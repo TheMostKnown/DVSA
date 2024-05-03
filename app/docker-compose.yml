@@ -1,0 +1,56 @@
+version: '3.1'
+services:
+  main:
+    build:
+      context: ./main
+      dockerfile: Dockerfile
+    ports:
+      - "8081:80"
+    container_name: main
+    hostname: main.sne
+    networks:
+      custom_network:
+        ipv4_address: 172.21.0.21
+
+  access:
+    build:
+      context: ./Access_control
+      dockerfile: Dockerfile
+    ports:
+      - "8082:80"
+    container_name: access
+    hostname: access.sne
+    networks:
+      custom_network:
+        ipv4_address: 172.21.0.22
+
+  file_uploads:
+    build:
+      context: ./File_uploads
+      dockerfile: Dockerfile
+    ports:
+      - "8083:80"
+    container_name: file
+    hostname: file.sne
+    networks:
+      custom_network:
+        ipv4_address: 172.21.0.23
+
+  sqli:
+    build:
+      context: ./SQLi
+      dockerfile: Dockerfile
+    ports:
+      - "8084:80"
+    container_name: sqli
+    hostname: sqli.sne
+    networks:
+      custom_network:
+        ipv4_address: 172.21.0.24
+
+networks:
+  custom_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet:  172.21.0.0/24
