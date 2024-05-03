@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, request
 
 app = Flask(__name__)
 
@@ -6,10 +6,19 @@ app = Flask(__name__)
 def sqli_index():
     return (render_template("index.html" ))
 
-@app.route('/1/')
+@app.errorhandler(404)
+def page_not_found(e):
+    return redirect("/", code=302)
+
+@app.route('/1/first', methods=['GET', 'POST'])
 def sql1_app():
-    num = 1
-    return (render_template('index_1.html', number=num))
+    if request.method == 'POST':
+        login = request.form.get('username')
+        password = request.form.get('password')
+
+        return (render_template('flag.html', flag="sne{where_was_a_simple_shielding}"))
+    else:
+        return (render_template('index_1.html'))
 
 @app.route('/2/')
 def sql2_app():
