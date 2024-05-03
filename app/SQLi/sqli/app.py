@@ -2,6 +2,10 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+@app.route('/')
+def sqli_index():
+    return (render_template("index.html" ))
+
 @app.route('/1/')
 def sql1_app():
     num = 1
