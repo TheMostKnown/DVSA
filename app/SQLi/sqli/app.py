@@ -1,20 +1,27 @@
 from flask import Flask, render_template, redirect, request, flash
 import sqlite3
+import re
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '8e977ef74bf745ac153c117a2c9e76c6'
+
+command_dict = [(" OR ",""), (" UNION ",""), (" AND ",""), 
+                ("SELECT",""), (" or ",""), (" and ",""), 
+                (" union ",""), (" select ",""), (" --",""), ("--","")]
+
+def replace_comands(my_str):
+    for x, y in command_dict:
+        my_str = my_str.replace(x, y)
+    return my_str
 
 def create_database():
     # Connect to the database
     conn = sqlite3.connect('sqli.db')
     c = conn.cursor()
-
     # Create the users table
     c.execute('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, login TEXT, password TEXT )')
-
     # Insert data into the users table
     c.execute('INSERT INTO users (login, password) VALUES ("admin", "TheStrongiestPassword")')
-
     # Save changes and close the connection
     conn.commit()
     conn.close()
@@ -25,7 +32,10 @@ def authVIP(login, password):
 
     conn = sqlite3.connect('sqli.db')
     c = conn.cursor()
-    c.execute("SELECT * FROM users WHERE login=? AND password=?", (login, password))
+    try:
+        c.execute("SELECT * FROM users WHERE login=\""+login+"\" AND password=\""+password+"\"")
+    except Exception as e:
+        flash(e, 'error')
     results = c.fetchall()
     conn.close()
 
@@ -43,12 +53,16 @@ def page_not_found(e):
 def sql1_app():
     if request.method == 'POST':
         login = request.form.get('username')
+        login = re.escape(login)
+
         password = request.form.get('password')
+        password = replace_comands(password)
+
         if not authVIP(login, password):
             flash('There is not user like '+login, 'error')
             return (render_template('index_1.html'))
 
-        return (render_template('flag.html', flag="sne{where_was_a_simple_shielding}"))
+        return (render_template('flag.html', flag="sne{where_was_a_simple_replacing}"))
     else:
         return (render_template('index_1.html'))
 
