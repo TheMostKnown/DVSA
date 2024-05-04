@@ -23,6 +23,21 @@ def create_database():
     # Insert data into the users table
     c.execute('INSERT INTO users (login, password) VALUES ("admin", "TheStrongiestPassword")')
     # Save changes and close the connection
+
+    c.execute('CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY, title TEXT, content TEXT )')
+    c.execute('''INSERT INTO posts (title, content) VALUES 
+              ("Hummingbirds can take over the world in a day!", "One of the smallest birds on earth is hummingbirds. \
+              No one even knows what they are capable of. But the long observations of an ornithologist from Murmansk \
+              led to unexpected conclusions. These birds are able to literally take over the whole world in a day, \
+              but they are hindered by only one thing and that is..."),
+              ("The strongiest password is found!", "Every day people live in search of a strong password. \
+              Someone needs it for social networks, someone for a nuclear button. No one expected that the most \
+              reliable password could exist, but scientists from Petrozavods State University were able to find it \
+              and this password is..."),
+              ("The new Ubuntu has lost its Python!", "A pet store intern from Kenya named Ubuntu did not keep track of \
+              the enclosure where the python lives. And now this starved asp is terrorizing crocodiles living in the sewers  \
+              of New York. Even mutated turtles are afraid of this creature. It's the size of it...")''')
+    
     conn.commit()
     conn.close()
 
@@ -53,7 +68,7 @@ def page_not_found(e):
 def sql1_app():
     if request.method == 'POST':
         login = request.form.get('username')
-        login = re.escape(login)
+        login = re.escape(replace_comands(login))
 
         password = request.form.get('password')
         password = replace_comands(password)
