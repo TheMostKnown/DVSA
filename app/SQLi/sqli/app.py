@@ -38,6 +38,15 @@ def create_database():
               the enclosure where the python lives. And now this starved asp is terrorizing crocodiles living in the sewers  \
               of New York. Even mutated turtles are afraid of this creature. It's the size of it...")''')
     
+    c.execute('CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY, link TEXT, title TEXT, category TEXT )')
+    c.execute('''INSERT INTO items (link, title, category) VALUES 
+              ("NaN"," You got a secret!","hidden"),
+              ("https://thecichlidstage.com/wp-content/uploads/2017/12/fish-bandaged.jpeg","You can get a fish","fish"),
+              ("https://s.mxmcdn.net/images-storage/albums/3/1/9/2/2/7/29722913_800_800.jpg","This girl is on fire!!!","fire"),
+              ("https://i.pinimg.com/736x/e9/d1/25/e9d125637730d936152ed6086e9d4d26.jpg","Get lost in three birches","tree"),
+              ("https://sun9-42.userapi.com/impf/c631628/v631628524/1538e/okaU89SYv4s.jpg?size=511x511&quality=96&sign=df72c5ae8e39664ea18c19e34c30e0d4&c_uniq_tag=UDZREl9NzQTyupCu5iVn5m8d1W-39zaylbUI64U275E&type=album","The king of rock","rock"),
+              ("https://www.clipartmax.com/png/full/61-615148_present-clip-art-free-december-birthday-clip-art.png", "A gift for you", "gift"),
+              ("https://get.wallhere.com/photo/anime-night-Moon-light-shape-737997.jpg","The dark moon","moon") ''')
     conn.commit()
     conn.close()
 
@@ -55,6 +64,38 @@ def authVIP(login, password):
     conn.close()
 
     return not not results
+
+def getArticles(search_str):
+    conn = sqlite3.connect('sqli.db')
+
+    c = conn.cursor()
+    try:
+        if not search_str:
+            c.execute("SELECT title, content FROM posts")
+        else:
+            c.execute("SELECT title, content FROM posts WHERE content LIKE \"%" + search_str+"%\"" )
+    except Exception as e:
+        flash(e, 'error')
+    results = c.fetchall()
+    conn.close()
+    return results
+
+def getItems(search_str):
+    conn = sqlite3.connect('sqli.db')
+    c = conn.cursor()
+    if search_str=="all":
+        search_str=""
+    try:
+        if not search_str:
+            c.execute("SELECT link, title, category FROM items WHERE category<>'hidden'")
+        else:
+            c.execute("SELECT link, title, category FROM items WHERE category=\"" + search_str+"\"" )
+    except Exception as e:
+        flash(e, 'error')
+    results = c.fetchall()
+    conn.close()
+    return results
+
 
 @app.route('/')
 def sqli_index():
@@ -77,20 +118,36 @@ def sql1_app():
             flash('There is not user like '+login, 'error')
             return (render_template('index_1.html'))
 
-        return (render_template('flag.html', flag="sne{where_was_a_simple_replacing}"))
+        return (render_template('flag.html', flag="sne{where_was_@_simple_replacing}"))
     else:
         return (render_template('index_1.html'))
 
 
-@app.route('/2/second')
+@app.route('/2/second', methods=['GET', 'POST'])
 def sql2_app():
-    num = 2
-    return (render_template('index_2.html', number=num))
+    articles = []
+    if request.method == 'POST':
+        articles = getArticles(request.form.get('search'))
+    else:
+        articles = getArticles("")
 
-@app.route('/3/third')
+    for x in articles:
+        if "TheStrongiestPassword" in x:
+            return (render_template('flag.html', flag="sne{uNiOn_request_is_@_bug}"))
+    return (render_template('index_2.html', articles=articles))
+
+@app.route('/3/third', methods=['GET', 'POST'])
 def sql3_app():
-    num = 3
-    return (render_template('index_3.html', number=num))
+    items = []
+    if request.method == 'POST':
+        items = getItems(request.form.get('category'))
+    else:
+        items = getItems("")
+
+    for x in items:
+        if "hidden" in x:
+            return (render_template('flag.html', flag="sne{buttons_@re_not_secure}"))
+    return (render_template('index_3.html', items=items))
 
 
 if __name__ == 'main':

@@ -4,12 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SQLi</title>
-
+    <link rel="stylesheet" href="../static/third_page.css">
 </head>
 <body>
-    <header>
-        <h1>SQL {{number}}</h1>
-    </header>
 
+    <header><div class="main-heading"><h1><span id="header">You can find anything here. Use filters!</span></h1></div></header>
+
+    <form action="" method="post">
+        <div class="grid-categories">
+            <div class="item-category"><button class="item-category" name="category" value="gift">gift</button></div>
+            <div class="item-category"><button class="item-category" name="category" value="fish">fish</button></div>
+            <div class="item-category"><button class="item-category" name="category" value="fire">fire</button></div>
+            <div class="item-category"><button class="item-category" name="category" value="tree">tree</button></div>
+            <div class="item-category"><button class="item-category" name="category" value="rock">rock</button></div>
+            <div class="item-category"><button class="item-category" name="category" value="moon">moon</button></div>
+            <div class="item-category"><button class="item-category" name="category" value="all">all</button></div>
+        </div>
+    </form>
+
+<div class="grid-container">
+    {% for item in items %}
+    <div class="border-item">
+        <div class="image-item"><img src="{{item[0]}}" alt="{{item[1]}}" width="400" height="400"></div>
+        <div class="title"><p>{{ item[1] }}</p></div>
+        <div class="center"><p>{{item[2]}}</p></div>
+    </div>
+    {% endfor %}
+</div>
 </body>
 </html>

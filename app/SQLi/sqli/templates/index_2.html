@@ -4,13 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SQLi</title>
-
+    <link rel="stylesheet" href="../static/second_page.css">
 </head>
 <body>
-    <header>
-        <h1>SQL {{number}}</h1>
-    </header>
+    <header><div class="main-heading"><h1><span id="header">You can find anything here</span></h1></div></header>
 
+    <p></p>
+    <form method="post">
+        <input type="text" class="textbox" name="search" placeholder="Search">
+        <input title="Search" value="" type="submit" class="button">
+    </form>
+    <p></p>
+    <p></p>
+<div class="grid-container">
+    {% for article in articles %}
+    <div class="border-item">
+        <div class="ex6"><h1>{{ article[0] }}</h1></div>
+        <div class="text-art"><p>{{ article[1] }}</p></div>
     </div>
+    {% endfor %}
+</div>
+
+{%- for category, message in get_flashed_messages(with_categories = true) %}
+    <div class = "alert alert-danger">
+       {{ message }}
+    </div>
+{%- endfor %}
 </body>
 </html>
