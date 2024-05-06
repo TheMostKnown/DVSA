@@ -1,12 +1,14 @@
-FROM python:3.11-slim-bullseye
+FROM ubuntu:latest
 
-COPY requirements.txt requirements.txt
-RUN pip3 install -r requirements.txt
+RUN apt-get update && apt-get install -y apache2 php libapache2-mod-php php-mysql
 
-COPY file .
+RUN echo "127.0.0.1       fileuploadersteam.sne">/etc/hosts
 
-EXPOSE 80
+COPY ./file /var/www/html
 
-ENV FLASK_APP=app.py
+RUN a2enmod rewrite
 
-CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0", "--port=80"]
+EXPOSE  80
+
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+#fileuploadersteam
