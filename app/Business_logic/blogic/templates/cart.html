@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Cart App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Welcome, {{ user.name }}!</h1>
+    <div class="cart-count">
+        <p>User Balance: ${{ user.balance }}</p>
+    </div>
+    <p>Don't forget about the promocode: <b>DISCOUNT10</b>!</p>
+    <h2>Cart:</h2>
+    <ul>
+        {% for product in products %}
+            <li>
+                <strong>{{ product.name }}</strong> - {{ product.description }} - ${{ product.price }}
+            </li>
+        {% endfor %}
+    </ul>
+    <p>Total Price: ${{ total_price }}</p>
+    
+    <form action="/clear_cart" method="post">
+        <button type="submit">Clear Cart</button>
+    </form>
+    
+    <form action="/cart" method="post">
+        <label for="discount_code">Discount Code:</label>
+        <input type="text" id="discount_code" name="discount_code" placeholder="Enter discount code">
+        <button type="submit">Apply Discount</button>
+    </form>
+
+    {% if discount > 0 %}
+        <p>Discount Applied: {{ discount }}$</p>
+    {% endif %}
+    
+    <form action="/buy" method="get">
+        <button type="submit">Buy</button>
+    </form>
+    
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Cart App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Welcome, {{ user.name }}!</h1>
+    <div class="cart-count">
+        <a href="/cart">Cart <span class="badge">{{ cart_count }}</span></a>
+        <p>User Balance: ${{ user.balance }}</p>
+        <form action="/clear_cart" method="post">
+            <button type="submit">Clear Cart</button>
+        </form>
+    </div>
+    <h2>Products:</h2>
+    <ul>
+        {% for product in products %}
+            <li>
+                <strong>{{ product.name }}</strong> - {{ product.description }} - ${{ product.price }}
+                <form action="/add_to_cart/{{ product.id }}" method="post">
+    			<button type="submit">Add to Cart</button>
+		</form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
