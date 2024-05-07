@@ -6,6 +6,8 @@ RUN echo "127.0.0.1       fileuploadersteam.sne" >> /etc/hosts
 
 COPY ./file /var/www/html
 
+RUN chown -R www-data:www-data /var/www/html
+
 RUN a2enmod rewrite
 
 EXPOSE  80
