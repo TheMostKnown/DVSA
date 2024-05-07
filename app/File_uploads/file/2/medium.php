@@ -24,18 +24,19 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2> Only jpeg or png files!</h2>
+                <h2> Only jpeg or png files! I will check!</h2>
             </div>
             <div class="col-12">
             <form method="POST" class="login-page" action="medium.php" enctype="multipart/form-data" name="upload">
                 <input type="file" name="file" /><br>
                 <p></p>
                 <button type="submit" class="button_index" name="thebutton">Upload!</button>
+            </form>
             </div>
         </div>
     </div>
     <div class="margin-top-40">
-        <button onclick="location.href='/2/images.php'" type="button" class="button_index">First task</button>
+        <button onclick="location.href='/2/images.php'" type="button" class="button_index">Images page</button>
     </div>
     <script type="text/javascript" src="js/button.js"></script>
 </body>
