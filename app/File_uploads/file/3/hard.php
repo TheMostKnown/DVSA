@@ -23,15 +23,17 @@
         <h1>Execute the best oneline bash code on this page!</h1>
     </header>
     <p>There are best files what we chosoe which you can try to read by our new "cat" program  only on this page!</p>
+    <form method="POST" class="login-page" action="hard.php" enctype="multipart/form-data" name="upload">
     <div class="grid-container">
-       <button class="border-item" name="theButton" value="cat flag.text"> Read flag.txt </button>
-       <!-- It seems what file is broken... cant execute "cat flag.text" not such file or directory -->
-        <button class="border-item" name="theButton" value="php viewfiles/firstusersfileю.php"> Th first user's file </button>
-        <button class="border-item" name="theButton" value="cat file1.txt"> Read file1.txt </button>
-        <button class="border-item" name="theButton" value="cat file2.txt"> Read file2.txt </button>
-        <button class="border-item" name="theButton" value="cat file3.txt"> Read file3.txt </button>
+       <button class="border-item" name="actions" value="flag.sh"> Read flag.txt </button>
+       <!-- It seems what file is broken... cant execute "cat $flag" not such file or directory -->
+        <button class="border-item" name="actions" value="firstusersfile.sh"> Th first user's file </button>
+        <button class="border-item" name="actions" value="file1.sh"> Read file1.txt </button>
+        <button class="border-item" name="actions" value="file2.sh"> Read file2.txt </button>
+        <button class="border-item" name="actions" value="file3.sh"> Read file3.txt </button>
     </div>
-    <p>You can upload your version of the best online text file and we will add it into our site. Maybe. </p>
+    </form>
+    <p>You can upload your image for illustrate our the best online tool and we will add it into our site. Maybe. </p>
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -46,6 +48,13 @@
             </div>
         </div>
     </div>
-    <!-- Тут то мы пхп и загружаем, который может файл прочитать -->
+    <!-- Снова картинка.... Но что поделать, идей больше нет. -->
 </body>
 </html>
+
+<?php
+
+// какая-то проверка на тип файла
+// загрузить файл другого типа
+// заставить этот файл исполниться = вывести локальную переменную с флагом
+?>
