@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-2 nav_logo"> <a href="/"></a> </div>
             <div class="col-10">
-                <div class="nav_text">File uploaders team</div>
+            <div class="nav_text"><a href="/">File uploaders team</a></div>
             </div>
         </div>
     </div>
@@ -24,49 +24,43 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h2> Only jpeg or png files!</h2>
+                <h2> Only jpeg or png files! I will check!</h2>
             </div>
             <div class="col-12">
             <form method="POST" class="login-page" action="medium.php" enctype="multipart/form-data" name="upload">
                 <input type="file" name="file" /><br>
                 <p></p>
                 <button type="submit" class="button_index" name="thebutton">Upload!</button>
+            </form>
             </div>
         </div>
     </div>
     <div class="margin-top-40">
-        <button onclick="location.href='/2/images.php'" type="button" class="button_index">First task</button>
+        <button onclick="location.href='/2/images.php'" type="button" class="button_index">Images page</button>
     </div>
     <script type="text/javascript" src="js/button.js"></script>
 </body>
 </html>
 <?php
-echo "ok1";
 if (isset($_POST['thebutton'])) {
     $allowedtypes = ['image/gif', 'image/jpeg', 'image/jpg', 'image/pjpeg', 'image/x-png', 'image/png'];
-    echo "ok2";
     if(!empty($_FILES["file"]))
     {
-        echo "ok3";
         if (((@$_FILES["file"]["type"] == "image/gif") || (@$_FILES["file"]["type"] == "image/jpeg")
         || (@$_FILES["file"]["type"] == "image/jpg") || (@$_FILES["file"]["type"] == "image/pjpeg")
-        || (@$_FILES["file"]["type"] == "image/x-png") || (@$_FILES["file"]["type"] == "image/png"))
-        && (@$_FILES["file"]["size"] < 102400))
+        || (@$_FILES["file"]["type"] == "image/x-png") || (@$_FILES["file"]["type"] == "image/png")))
         {
-            echo "ok4";
             $fileType = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $_FILES['file']['tmp_name']);
-            if (!in_array($fileType, $allowedTypes)) {
-                header("Location: flag.php?flag=sne{This_one_was_ok}");
+            if (!in_array($fileType, $allowedtypes)) {
+                header("Location: ../flag.php?flag=sne{This_0ne_w@s_0k}");
             }else{
                 $tempPath = $_FILES['file']['tmp_name'];
                 $destinationPath = 'upload/' . uniqid() . '_' . basename($_FILES['file']['name']);
-                echo "ok5";
                 if (move_uploaded_file($tempPath, $destinationPath)){
-                    echo "Load in:  " . "upload/" . $destinationPath;
+                    echo "Load in:  " . $destinationPath;
                 } else{
-                    echo "Error!!!";
+                    echo " Error!!! ";
                 }
-                echo "ok6";
             }
         }
         else
