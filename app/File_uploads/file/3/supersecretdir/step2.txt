@@ -1,0 +1,1 @@
+cat "/var/www/html/3/supersecretdir/flag.txt";

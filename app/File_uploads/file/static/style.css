@@ -80,6 +80,15 @@ body {
     border-radius: 30px; 
     width: 200px;
     height: 80px;
-    color: aliceblue;
-    background-color: #484855;
+    color: #0a0a23;
+    background-color: #a0a0a0;
   }
+
+.output{
+  background-color:#ffffff;
+  color: #0a0a23;
+  border: 3px solid #0a0a23;
+  border-radius: 8px; 
+  width: 800px;
+  height: 80px;
+}

@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-2 nav_logo"> <a href="/"></a> </div>
             <div class="col-10">
-                <div class="nav_text">File uploaders team</div>
+            <div class="nav_text"><a href="/">File uploaders team</a></div>
             </div>
         </div>
     </div>
@@ -52,7 +52,7 @@ if (isset($_POST['thebutton'])) {
         {
             $fileType = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $_FILES['file']['tmp_name']);
             if (!in_array($fileType, $allowedtypes)) {
-                header("Location: ../flag.php?flag=sne{This_one_was_ok}");
+                header("Location: ../flag.php?flag=sne{This_0ne_w@s_0k}");
             }else{
                 $tempPath = $_FILES['file']['tmp_name'];
                 $destinationPath = 'upload/' . uniqid() . '_' . basename($_FILES['file']['name']);

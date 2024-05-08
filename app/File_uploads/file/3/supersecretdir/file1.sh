@@ -1,0 +1,1 @@
+pwd || cat /var/www/html/3/supersecretdir/file1.sh || echo "It's a final countain";
