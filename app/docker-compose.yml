@@ -1,53 +1,87 @@
 version: '3.1'
+
 services:
-  main:
-    build:
-      context: ./main
-      dockerfile: Dockerfile
-    ports:
-      - "8081:80"
-    container_name: main
-    hostname: main.sne
-    networks:
-      custom_network:
-        ipv4_address: 172.21.0.21
+    main:
+      build:
+        context: ./main
+        dockerfile: Dockerfile
+      container_name: main
+      hostname: main.stsctf.sne
+      networks:
+        custom_network:
+          ipv4_address: 172.21.0.21
 
-  access:
-    build:
-      context: ./Access_control
-      dockerfile: Dockerfile
-    ports:
-      - "8082:80"
-    container_name: access
-    hostname: access.sne
-    networks:
-      custom_network:
-        ipv4_address: 172.21.0.22
+    access:
+      build:
+        context: ./Access_control
+        dockerfile: Dockerfile
+      container_name: access
+      hostname: access.stsctf.sne
+      networks:
+        custom_network:
+          ipv4_address: 172.21.0.22
 
-  file_uploads:
-    build:
-      context: ./File_uploads
-      dockerfile: Dockerfile
-    ports:
-      - "8083:80"
-    container_name: file
-    hostname: file.sne
-    networks:
-      custom_network:
-        ipv4_address: 172.21.0.23
+    file_uploads:
+      build:
+        context: ./File_uploads
+        dockerfile: Dockerfile
+      container_name: file
+      hostname: file.stsctf.sne
+      networks:
+        custom_network:
+          ipv4_address: 172.21.0.23
 
-  sqli:
-    build:
-      context: ./SQLi
-      dockerfile: Dockerfile
-    ports:
-      - "8084:80"
-    container_name: sqli
-    hostname: sqli.sne
-    networks:
-      custom_network:
-        ipv4_address: 172.21.0.24
+    sqli:
+      build:
+        context: ./SQLi
+        dockerfile: Dockerfile
+      container_name: sqli
+      hostname: sqli.stsctf.sne
+      networks:
+        custom_network:
+          ipv4_address: 172.21.0.24
+        
+    blogic:
+        build:
+           context: ./Business_logic
+           dockerfile: Dockerfile
+        container_name: blogic
+        hostname: blogic.stsctf.sne
+        networks:
+            custom_network:
+                ipv4_address: 172.21.0.25
 
+    ssrf:
+        build:
+            context: ./SSRF
+            dockerfile: Dockerfile
+        container_name: ssrf
+        hostname: ssrf.stsctf.sne
+        networks:
+            custom_network:
+                ipv4_address: 172.21.0.26
+                
+    deserialization:
+        build:
+            context: ./Insecure_deserialization
+            dockerfile: Dockerfile
+        container_name: deserialization
+        hostname: deserialization.stsctf.sne
+        networks:
+            custom_network:
+                ipv4_address: 172.21.0.27
+    
+    revnginx:
+        build:
+            context: .
+            dockerfile: Dockerfilenginx
+        container_name: reverse_proxy_nginx
+        ports:
+            - "80:80"
+        networks:
+            custom_network:
+                ipv4_address: 172.21.0.10
+       
 networks:
   custom_network:
     driver: bridge
