@@ -1,17 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>File uploads</title>
+    <title>SQL injections</title>
     <link rel="stylesheet" href="static/style.css">
   </head>
   <body>
     <header>
     <div class="main-heading">
-      <h1><span id="header">Your flag is <?php echo $_GET["flag"]; ?> !</span></h1>
+      <h1><span id="header">Access denied!</span></h1>
     </div>  
     </header>
 

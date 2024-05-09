@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-2 nav_logo"> <a href="/"></a> </div>
             <div class="col-10">
-                <div class="nav_text">File uploaders team</div>
+                <div class="nav_text"><a href="/">File uploaders team</a></div>
             </div>
         </div>
     </div>
