@@ -35,8 +35,13 @@ def simple_ssrf():
 @app.route('/second')
 def local_file_ssrf():
     file_path = request.args.get('file')
-    if 'etc/passwd' in file_path:
-        return render_template('flag.html', flag=flag_medium)
+    if '/flag/flag.txt' in file_path:
+        try:
+            with open('flag/flag.txt', 'r') as file:
+                file_content = file.read()
+        except FileNotFoundError:
+            file_content = 'File not found'
+        return file_content
     else:
         return "Access denied"
 
