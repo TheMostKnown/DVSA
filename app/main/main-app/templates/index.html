@@ -42,6 +42,9 @@
         .task .btn:hover {
             background-color: #0056b3;
         }
+        .correct {
+            background-color: lightgreen;
+        }
     </style>
 </head>
 <body>
@@ -49,17 +52,135 @@
         <h1>CTF Jeopardy Dashboard</h1>
     </header>
     <div class="container">
-        <div class="task">
-            <h2>Category 1</h2>
-            <p>Task 1: Description of the task.</p>
-            <button class="btn">Solve</button>
+        <h2>Business Logic Vulnerabilities</h2>
+        <div class="task" id="bl-task1" data-taskid="bl-task1">
+            <p>Task 1:</p>
+            <p>I have an internet shop. I tried to make it as comfortable for anyone as possible!</p>
+            <p>Look! I've even provided a discount!</p>
+            <p><b>Task location:</b> ... </p>
+            <input type="text" id="bl-flag1" placeholder="Enter flag">
+            <button class="btn" onclick="checkFlag('bl-flag1', 'bl-task1')">Submit</button>
         </div>
-        <div class="task">
-            <h2>Category 2</h2>
-            <p>Task 2: Description of the task.</p>
-            <button class="btn">Solve</button>
+        <div class="task" id="bl-task2" data-taskid="bl-task2">
+            <p>Task 2:</p>
+            <p>My shop grows fast! I've decided to add products for RICH people.</p>
+            <p>Hope, the shop can manage it.</p>
+            <p><b>Task location:</b> ... </p>
+            <input type="text" id="bl-flag2" placeholder="Enter flag">
+            <button class="btn" onclick="checkFlag('bl-flag2', 'bl-task2')">Submit</button>
         </div>
-        <!-- Add more task divs as needed -->
+        <div class="task" id="bl-task3" data-taskid="bl-task3">
+            <p>Task 3:</p>
+            <p>Hmm.. It seems, that to attract the newcommers, I need to provide gift Codes.</p>
+            <p>Looks pretty!</p>
+            <p><b>Task location:</b> ... </p>
+            <input type="text" id="bl-flag3" placeholder="Enter flag">
+            <button class="btn" onclick="checkFlag('bl-flag3', 'bl-task3')">Submit</button>
+        </div>
     </div>
+    
+        <div class="container">
+        <h2>Insecure Deserialization</h2>
+        <div class="task" id="id-task1" data-taskid="id-task1">
+            <p>Task 1:</p>
+            <p>I've developed a service that can show the user information. I suppose that serialization is good for it!</p>
+            <p>I should give the secret message only for those who has a flag</p>
+            <p><b>Task location:</b> ... </p>
+            <input type="text" id="id-flag1" placeholder="Enter flag">
+            <button class="btn" onclick="checkFlag('id-flag1', 'id-task1')">Submit</button>
+        </div>
+        <div class="task" id="id-task2" data-taskid="id-task2">
+            <p>Task 2:</p>
+            <p>Ok, I see, that there are some problems.. I've added an administrator access to manage the problems.</p>
+            <p>Here, his role is signed! No one can bypass it!.</p>
+            <p><b>Task location:</b> ... </p>
+            <input type="text" id="id-flag2" placeholder="Enter flag">
+            <button class="btn" onclick="checkFlag('id-flag2', 'id-task2')">Submit</button>
+        </div>
+        <div class="task" id="id-task3" data-taskid="id-task3">
+            <p>Task 3:</p>
+            <p>I've implemented a Logger Class, but for now I don't know how to use it correctly. Let it be till the better times.</p>
+            <p>Here is it:</p>
+            <textarea rows="27" cols="58">
+class Logger {
+    private $event;
+    private $callback;
+
+    public function __construct($event) {
+        $this->event = $event;
+    }
+
+    public function setCallback($callback) {
+        if (is_callable($callback)) {
+            $this->callback = $callback;
+        }
+    }
+
+    public function log() {
+        if (isset($this->callback)) {
+            call_user_func($this->callback, $this->event);
+        }
+        return "[Event: {$this->event}]";
+    }
+
+    public function __wakeup() {
+        if (isset($this->callback)) {
+                $this->log();
+        }
+    }
+}  
+            </textarea>
+            <p>Also, I've put something in /flag file that will help me for future understanding</p>
+            <p><b>Task location:</b> ... </p>
+            <input type="text" id="id-flag3" placeholder="Enter flag">
+            <button class="btn" onclick="checkFlag('id-flag3', 'id-task3')">Submit</button>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>XXE</h2>
+        <div class="task" id="xxe-task1" data-taskid="xxe-task1">
+            <p>Task 1:</p>
+            <p>I really like Pokemons! You can try my service for displaying information about them!</p>
+            <p>In future it can become a great social media!</p>
+            <p><b>Task location:</b> ... </p>
+            <input type="text" id="xxe-flag1" placeholder="Enter flag">
+            <button class="btn" onclick="checkFlag('xxe-flag1', 'xxe-task1')">Submit</button>
+        </div>
+        <div class="task" id="xxe-task2" data-taskid="xxe-task2">
+            <p>Task 2:</p>
+            <p>I have implemented a service for uploading and viewing pictures!.</p>
+            <p>I made it Secure. No one can abuse it!</p>
+            <p><b>Task location:</b> ... </p>
+            <input type="text" id="xxe-flag2" placeholder="Enter flag">
+            <button class="btn" onclick="checkFlag('xxe-flag2', 'xxe-task2')">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        function checkFlag(inputId, taskId) {
+            var input = document.getElementById(inputId);
+            var flag = input.value;
+            var taskDiv = document.getElementById(taskId);
+            var taskID = taskDiv.dataset.taskid;
+
+            // AJAX request to Flask backend
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/check_flag", true);
+            xhr.setRequestHeader("Content-Type", "application/json");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.is_correct) {
+                        taskDiv.classList.add('correct');
+                        input.disabled = true; // Disable input field after correct flag submission
+                    } else {
+                        alert('Incorrect flag. Please try again.');
+                    }
+                }
+            };
+            xhr.send(JSON.stringify({ task_id: taskID, flag: flag }));
+        }
+    </script>
 </body>
 </html>
