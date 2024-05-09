@@ -1,0 +1,7 @@
+127.0.0.1	main.stsctf.sne
+127.0.0.1       access.stsctf.sne
+127.0.0.1       file.stsctf.sne
+127.0.0.1       sqli.stsctf.sne
+127.0.0.1       blogic.stsctf.sne
+127.0.0.1       ssrf.stsctf.sne
+127.0.0.1       deserialization.stsctf.sne
