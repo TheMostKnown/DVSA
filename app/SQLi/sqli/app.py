@@ -7,7 +7,7 @@ app.config['SECRET_KEY'] = '8e977ef74bf745ac153c117a2c9e76c6'
 
 command_dict = [(" OR ",""), (" UNION ",""), (" AND ",""), 
                 ("SELECT",""), (" or ",""), (" and ",""), 
-                (" union ",""), (" select ",""), (" --",""), ("--","")]
+                (" union ",""), (" select ",""), (" --","")]
 
 def replace_comands(my_str):
     for x, y in command_dict:
