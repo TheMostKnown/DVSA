@@ -23,6 +23,11 @@ def is_whitelisted(url):
     return False
 
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
 @app.route('/first')
 def simple_ssrf():
     url = request.args.get('url')

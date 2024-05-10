@@ -17,6 +17,14 @@ correct_flags = {
     "id-task3": "sne{g00d_yuv3_r34ch3d_rc3_asd8f79asdf87}",
     "xxe-task1": "sne{p0k3m0ns_4r3_gr34t_asjdlxcovs8dfs7dfhvc}",
     "xxe-task2": "sne{v3ry_v3ry_v3ry_f00l1sh_svg_sdjsjvj8372j}",
+    "ssrf-task1": "sne{Th47_w4$_e@5y}",
+    "ssrf-task2": "sne{b3773r_7h4n_my_Gr4ndm4}",
+    "ssrf-task3": "sne{W3_r1ch}",
+    "auth-task1": "cne{bru73_br0}",
+    "auth-task2": "cne{1_l0v3_3471n6_c00k135}",
+    "path-task1": "sne{y0u_570l3_my_53cr375}",
+    "path-task2": "sne{1_l0v3_7h3_Sh1r3}",
+    "path-task3": "sne{my_pr3c10u5}",
     "sqli-task1": "sne{where_was_@_simple_replacing}",
     "sqli-task2": "sne{uNiOn_request_is_@_bug}",
     "sqli-task3": "sne{buttons_@re_not_secure}",
@@ -28,6 +36,7 @@ correct_flags = {
     "file-task3": "sne{Its_1ike_pu22le}"
     
 }
+
 
 @app.route('/check_flag', methods=['POST'])
 def check_flag():
