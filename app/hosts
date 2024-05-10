@@ -5,3 +5,6 @@
 127.0.0.1       blogic.stsctf.sne
 127.0.0.1       ssrf.stsctf.sne
 127.0.0.1       deserialization.stsctf.sne
+127.0.0.1       path-traversal.stsctf.sne
+127.0.0.1       xxe.stsctf.sne
+127.0.0.1       auth-vuln.stsctf.sne
