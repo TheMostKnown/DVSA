@@ -1,38 +1,36 @@
-from flask import Flask, request, make_response
+from flask import Flask, request, make_response, render_template
 
 app = Flask(__name__)
-FLAG = "cne{bru73_br0}"
+FLAG_1 = "cne{bru73_br0}"
 FLAG_2 = "cne{1_l0v3_3471n6_c00k135}"
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+
+@app.route('/login/', methods=['GET', 'POST'])
 def login():
+    login = request.form.get('login')
     password = request.form.get('password')
-    if password == "pass":
-        return "Login successful! Here is your flag: " + FLAG
-    else:
-        return "Incorrect password."
-
-
-@app.route('/login', methods=['GET'])
-def admin():
-    login = request.args.get('login')
-    password = request.args.get('password')
-    print( login, password)
-    if login == 'admin' and password == '1234qwer':
-        resp = make_response("Login successful!")
+    print(login, password)
+    if login == "Bob" and password == "pass":
+        return render_template('flag.html', flag=FLAG_1)
+    elif login == 'admin' and password == '1234qwer':
+        resp = make_response(render_template('success.html'))
         resp.set_cookie('admin', 'True')
         return resp
     else:
-        return 'Incorrect login'
+        return render_template('login.html')
 
 
 @app.route('/flag', methods=['GET'])
 def get_flag():
     if request.cookies.get('admin') == 'True':
-        return "Here is your flag: " + FLAG_2
+        return render_template('flag.html', flag=FLAG_2)
     else:
-        return "Access denied."
+        return render_template('fail.html')
 
 
 if __name__ == '__main__':

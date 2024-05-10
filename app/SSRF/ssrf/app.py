@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, make_response
 
 app = Flask(__name__)
 
@@ -28,41 +28,42 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/first')
+@app.route('/first', methods=['GET', 'POST'])
 def simple_ssrf():
     url = request.args.get('url')
     if url.startswith('http://simple_ssrf/flag'):
         return render_template('flag.html', flag=flag_easy)
     else:
-        return "Access denied"
+        return render_template('error.html', error="Access denied")
 
 
-@app.route('/second')
+@app.route('/second', methods=['GET', 'POST'])
 def local_file_ssrf():
     file_path = request.args.get('file')
-    if '/flag/flag.txt' in file_path:
+    if '/flag/flag.txt' == file_path:
         try:
             with open('flag/flag.txt', 'r') as file:
                 file_content = file.read()
+                resp = make_response(render_template('flag.html', flag=file_content))
         except FileNotFoundError:
             file_content = 'File not found'
-        return file_content
+        return resp
     else:
-        return "Access denied"
+        return render_template('error.html', error="FILE NOT FOUND")
 
 
-@app.route('/third')
+@app.route('/third', methods=['GET'])
 def black_white_lists():
     url = request.args.get('url')
     if url:
         if is_blacklisted(url):
-            return "Access denied. URL is blacklisted."
+            return render_template('error.html', error="Access denied. URL is blacklisted.")
         elif not is_whitelisted(url):
-            return "Access denied. URL is not whitelisted."
+            return render_template('error.html', error="Access denied. URL is not whitelisted.")
         else:
             return render_template('flag.html', flag=flag_hard)
     else:
-        return "URL parameter is missing."
+        return render_template('error.html', error="URL parameter is missing")
 
 
 if __name__ == '__main__':
