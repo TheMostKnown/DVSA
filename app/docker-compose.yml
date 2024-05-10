@@ -70,6 +70,36 @@ services:
         networks:
             custom_network:
                 ipv4_address: 172.21.0.27
+                
+    xxe:
+        build:
+            context: ./XXE
+            dockerfile: Dockerfile
+        container_name: xxe
+        hostname: xxe.stsctf.sne
+        networks:
+            custom_network:
+                ipv4_address: 172.21.0.28
+                
+    path-traversal:
+        build:
+            context: ./Path-Traversal
+            dockerfile: Dockerfile
+        container_name: path-traversal
+        hostname: path-traversal.stsctf.sne
+        networks:
+            custom_network:
+                ipv4_address: 172.21.0.29
+                
+    auth-vuln:
+        build:
+            context: ./Authentication_vulns
+            dockerfile: Dockerfile
+        container_name: auth-vuln
+        hostname: auth-vuln.stsctf.sne
+        networks:
+            custom_network:
+                ipv4_address: 172.21.0.30
     
     revnginx:
         build:
