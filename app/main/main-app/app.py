@@ -16,7 +16,17 @@ correct_flags = {
     "id-task2": "sne{0k_1_b3l31ve_th4t_y0u_4r3_4dmin_201dc6546c}",
     "id-task3": "sne{g00d_yuv3_r34ch3d_rc3_asd8f79asdf87}",
     "xxe-task1": "sne{p0k3m0ns_4r3_gr34t_asjdlxcovs8dfs7dfhvc}",
-    "xxe-task2": "sne{v3ry_v3ry_v3ry_f00l1sh_svg_sdjsjvj8372j}"
+    "xxe-task2": "sne{v3ry_v3ry_v3ry_f00l1sh_svg_sdjsjvj8372j}",
+    "sqli-task1": "sne{where_was_@_simple_replacing}",
+    "sqli-task2": "sne{uNiOn_request_is_@_bug}",
+    "sqli-task3": "sne{buttons_@re_not_secure}",
+    "access-task1": "sne{T00_e@sy_acce55_c0ntro1}",
+    "access-task2": "sne{G1immer_secret}",
+    "access-task3": "sne{Base64_not_4_encryption}",
+    "file-task1": "sne{Too_simple_check_for_files}",
+    "file-task2": "sne{This_0ne_w@s_0k}",
+    "file-task3": "sne{Its_1ike_pu22le}"
+    
 }
 
 @app.route('/check_flag', methods=['POST'])

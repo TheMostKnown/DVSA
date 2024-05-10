@@ -23,8 +23,9 @@ def create_database():
     # Insert data into the users table
     c.execute('INSERT INTO users (login, password) VALUES ("admin", "TheStrongiestPassword")')
     # Save changes and close the connection
-
+    conn.commit()
     c.execute('CREATE TABLE IF NOT EXISTS posts (id INTEGER PRIMARY KEY, title TEXT, content TEXT )')
+    conn.commit()
     c.execute('''INSERT INTO posts (title, content) VALUES 
               ("Hummingbirds can take over the world in a day!", "One of the smallest birds on earth is hummingbirds. \
               No one even knows what they are capable of. But the long observations of an ornithologist from Murmansk \
@@ -37,8 +38,9 @@ def create_database():
               ("The new Ubuntu has lost its Python!", "A pet store intern from Kenya named Ubuntu did not keep track of \
               the enclosure where the python lives. And now this starved asp is terrorizing crocodiles living in the sewers  \
               of New York. Even mutated turtles are afraid of this creature. It's the size of it...")''')
-    
+    conn.commit()
     c.execute('CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY, link TEXT, title TEXT, category TEXT )')
+    conn.commit()
     c.execute('''INSERT INTO items (link, title, category) VALUES 
               ("NaN"," You got a secret!","hidden"),
               ("https://thecichlidstage.com/wp-content/uploads/2017/12/fish-bandaged.jpeg","You can get a fish","fish"),
@@ -127,14 +129,14 @@ def sql1_app():
 def sql2_app():
     articles = []
     if request.method == 'POST':
-        articles = getArticles(request.form.get('search'))
+        article = getArticles(request.form.get('search'))
     else:
-        articles = getArticles("")
+        article = getArticles("")
 
     for x in articles:
         if "TheStrongiestPassword" in x:
             return (render_template('flag.html', flag="sne{uNiOn_request_is_@_bug}"))
-    return (render_template('index_2.html', articles=articles))
+    return (render_template('index_2.html', articles=article))
 
 @app.route('/3/third', methods=['GET', 'POST'])
 def sql3_app():

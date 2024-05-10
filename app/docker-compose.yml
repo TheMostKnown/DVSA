@@ -83,7 +83,7 @@ services:
                 
     path-traversal:
         build:
-            context: ./Path-Traversal
+            context: ./Path_Traversal
             dockerfile: Dockerfile
         container_name: path-traversal
         hostname: path-traversal.stsctf.sne
