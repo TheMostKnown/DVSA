@@ -2,7 +2,7 @@ from flask import Flask, request, make_response
 
 app = Flask(__name__)
 FLAG = "cne{bru73_br0}"
-FLAG_2 = "CTF{cookie_vuln}"
+FLAG_2 = "cne{1_l0v3_3471n6_c00k135}"
 
 
 @app.route('/login', methods=['POST'])

@@ -2,7 +2,7 @@ from flask import Flask, render_template, send_file, request
 
 app = Flask(__name__)
 
-flag_basic = "FLAG{Basic_Path_Traversal_Success}"
+flag_basic = "sne{y0u_570l3_my_53cr375}"
 
 
 @app.route('/')
@@ -30,9 +30,8 @@ def get_medium():
 
 @app.route('/get_advanced')
 def get_advanced():
-    filename = request.args.get('file')
-    if '../' in filename:
-        return "Invalid path"
+    filename = request.args.get('file').replace("../","")
+    print(filename)
     try:
         with open(f"templates/{filename}", 'r') as file:
             return file.read()
