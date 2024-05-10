@@ -133,7 +133,7 @@ def sql2_app():
     else:
         article = getArticles("")
 
-    for x in articles:
+    for x in article:
         if "TheStrongiestPassword" in x:
             return (render_template('flag.html', flag="sne{uNiOn_request_is_@_bug}"))
     return (render_template('index_2.html', articles=article))
