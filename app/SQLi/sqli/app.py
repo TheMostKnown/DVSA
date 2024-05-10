@@ -127,15 +127,15 @@ def sql1_app():
 
 @app.route('/2/second', methods=['GET', 'POST'])
 def sql2_app():
-    articles = []
+    article = []
     if request.method == 'POST':
         article = getArticles(request.form.get('search'))
+        for x in article:
+            if "TheStrongiestPassword" in x:
+                return (render_template('flag.html', flag="sne{uNiOn_request_is_@_bug}"))
     else:
         article = getArticles("")
 
-    for x in articles:
-        if "TheStrongiestPassword" in x:
-            return (render_template('flag.html', flag="sne{uNiOn_request_is_@_bug}"))
     return (render_template('index_2.html', articles=article))
 
 @app.route('/3/third', methods=['GET', 'POST'])
@@ -143,12 +143,12 @@ def sql3_app():
     items = []
     if request.method == 'POST':
         items = getItems(request.form.get('category'))
+        for x in items:
+            if "hidden" in x:
+                return (render_template('flag.html', flag="sne{buttons_@re_not_secure}"))
     else:
         items = getItems("")
 
-    for x in items:
-        if "hidden" in x:
-            return (render_template('flag.html', flag="sne{buttons_@re_not_secure}"))
     return (render_template('index_3.html', items=items))
 
 
