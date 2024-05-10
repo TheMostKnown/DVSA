@@ -24,7 +24,7 @@ correct_flags = {
     "auth-task2": "cne{1_l0v3_3471n6_c00k135}",
     "path-task1": "sne{y0u_570l3_my_53cr375}",
     "path-task2": "sne{1_l0v3_7h3_Sh1r3}",
-    "path-task3": "sne{h0m3_5w337_h0m3}",
+    "path-task3": "sne{my_pr3c10u5}",
 
 }
 

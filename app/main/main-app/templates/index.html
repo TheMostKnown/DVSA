@@ -157,6 +157,76 @@ class Logger {
         </div>
     </div>
 
+    <div class="container">
+        <h2>Authentication Vulnerabilities</h2>
+        <div class="task" id="auth-task1" data-taskid="auth-task1">
+            <p>Task 1:</p>
+            <p></p>
+            <p><b>Task location:</b> ... </p>
+            <input type="text" id="auth-flag1" placeholder="Enter flag">
+            <button class="btn" onclick="checkFlag('auth-flag1', 'auth-task1')">Submit</button>
+        </div>
+        <div class="task" id="auth-task2" data-taskid="auth-task2">
+            <p>Task 2:</p>
+            <p></p>
+            <p><b>Task location:</b> ... </p>
+            <input type="text" id="auth-flag2" placeholder="Enter flag">
+            <button class="btn" onclick="checkFlag('auth-flag2', 'auth-task2')">Submit</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Server-side request forgery (SSRF)</h2>
+        <div class="task" id="ssrf-task1" data-taskid="ssrf-task1">
+            <p>Task 1:</p>
+            <p></p>
+            <p><b>Task location:</b> ... </p>
+            <input type="text" id="ssrf-flag1" placeholder="Enter flag">
+            <button class="btn" onclick="checkFlag('ssrf-flag1', 'ssrf-task1')">Submit</button>
+        </div>
+        <div class="task" id="ssrf-task2" data-taskid="ssrf-task2">
+            <p>Task 2:</p>
+            <p></p>
+            <p><b>Task location:</b> ... </p>
+            <input type="text" id="ssrf-flag2" placeholder="Enter flag">
+            <button class="btn" onclick="checkFlag('ssrf-flag2', 'ssrf-task2')">Submit</button>
+        </div>
+        <div class="task" id="ssrf-task3" data-taskid="ssrf-task3">
+            <p>Task 3:</p>
+            <p></p>
+            <p><b>Task location:</b> ... </p>
+            <input type="text" id="ssrf-flag3" placeholder="Enter flag">
+            <button class="btn" onclick="checkFlag('ssrf-flag3', 'ssrf-task3')">Submit</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Path Traversal</h2>
+        <div class="task" id="path-task1" data-taskid="path-task1">
+            <p>Task 1:</p>
+            <p>I have many secrets hidden throughout the Shire.</p>
+            <p>Can you find the simplest one?</p>
+            <p><b>Task location:</b> ... </p>
+            <input type="text" id="path-flag1" placeholder="Enter flag">
+            <button class="btn" onclick="checkFlag('path-flag1', 'path-task1')">Submit</button>
+        </div>
+        <div class="task" id="path-task2" data-taskid="path-task2">
+            <p>Task 2:</p>
+            <p>My tall old friend lost some kind of flag in Hobbiton, but I think he's hiding something more valuable...</p>
+            <p><b>Task location:</b> ... </p>
+            <input type="text" id="path-flag2" placeholder="Enter flag">
+            <button class="btn" onclick="checkFlag('path-flag2', 'path-task2')">Submit</button>
+        </div>
+        <div class="task" id="path-task3" data-taskid="path-task3">
+            <p>Task 3:</p>
+            <p>Although hobbits are famous for their hospitality, I will not let you into my sweet home today.</p>
+            <p>My precious-s-s-s-s</p>
+            <p><b>Task location:</b> ... </p>
+            <input type="text" id="path-flag3" placeholder="Enter flag">
+            <button class="btn" onclick="checkFlag('path-flag3', 'path-task3')">Submit</button>
+        </div>
+    </div>
+
     <script>
         function checkFlag(inputId, taskId) {
             var input = document.getElementById(inputId);
