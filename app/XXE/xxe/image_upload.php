@@ -13,5 +13,7 @@
             <input type="submit" value="Upload Image" name="submit">
         </form>
     </div>
+    
+<p>P.S. Your flag is in /flag2_po58sdu8x file.</p>
 </body>
 </html>

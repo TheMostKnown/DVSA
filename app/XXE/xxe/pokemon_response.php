@@ -18,5 +18,3 @@ if (!empty($xml_content)) {
     echo "No XML content provided.";
 }
 ?>
-
-<p>P.S. Your flag is in /flag2_po58sdu8x file.</p>
