@@ -84,7 +84,7 @@ def buy():
 
     if user['balance'] >= total_price:
         message = "You can buy all the products in your cart!"
-        user['balance'] -= total_price
+        user['balance'] -= max(total_price, 0)
         for item in cart:
             if item["id"] == 6:
                 message += "\n You've bought a Gift Card! Your balance was enlarged!"
