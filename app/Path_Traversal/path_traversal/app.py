@@ -10,7 +10,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/get_basic')
+@app.route('/first')
 def get_basic():
     filename = request.args.get('file')
     if filename == 'secret.txt':
@@ -19,7 +19,7 @@ def get_basic():
         return "File not found"
 
 
-@app.route('/get_medium')
+@app.route('/second')
 def get_medium():
     filename = request.args.get('file')
     if filename.endswith('.txt'):
@@ -28,7 +28,7 @@ def get_medium():
         return "Invalid file type"
 
 
-@app.route('/get_advanced')
+@app.route('/third')
 def get_advanced():
     filename = request.args.get('file').replace("../","")
     print(filename)
