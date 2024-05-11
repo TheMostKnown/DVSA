@@ -31,7 +31,7 @@ def index():
 @app.route('/first', methods=['GET', 'POST'])
 def simple_ssrf():
     url = request.args.get('url')
-    if url.startswith('http://simple_ssrf/flag'):
+    if url.startswith('http://ssrf.stsctf.sne/flag'):
         return render_template('flag.html', flag=flag_easy)
     else:
         return render_template('error.html', error="Access denied")
